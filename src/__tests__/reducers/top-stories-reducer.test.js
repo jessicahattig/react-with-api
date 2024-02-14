@@ -11,6 +11,20 @@ describe('topStoriesReducer', () => {
     error: null
   };
 
+  test('failing to get topStories should change isLoaded to true and add an error message', () => {
+    const error = "An error";
+    action = {
+      type: c.GET_TOP_STORIES_FAILURE,
+      error
+    };
+
+    expect(topStoriesReducer(initialState, action)).toEqual({
+        isLoaded: true,
+        topStories: [],
+        error: "An error"
+    });
+  });
+
   test('should successfully throw a new error if a non-matching action type is passed into it', () => {
     expect(
       () => {
